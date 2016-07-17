@@ -15,7 +15,7 @@ int main(void)
 	float ref, err, in, out;
 	int end = 0;
 	float h = 1; // sample period = 1 [s]
-	float u_i = 0;
+	float int_state = 0; //auxiliary state for the integrator
 	float k_p = 0.5;
 	float k_i = 0.1;
 
@@ -31,7 +31,7 @@ int main(void)
 	while(end == 0)
 	{
 	   	err = ref - out;
-		PI(k_p, k_i, &in, &u_i, err, h);
+		PI(k_p, k_i, &in, &int_state, err, h);
 		process(in, &out);
 
 		printf("Output value: %.1f \n", out);
