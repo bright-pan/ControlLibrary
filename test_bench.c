@@ -15,15 +15,19 @@ int main(void)
 	float ref, err, in, out;
 	int end = 0;
 	float h = 1; // sample period = 1 [s]
-	float int_state = 0; //auxiliary state for the integrator
+	//float int_state = 0; //auxiliary state for the integrator
 	float k_p = 0.5;
-	float k_i = 0.1;
+	float k_i = 0.2;
+	float k_d = 0.1;
+	float err1 = 0; // error at n-1
+	float err2 = 0; // error at n-2
 
 	/* Initial conditions - a disturbance out = 200 */
 	out = 200;
 	in = 0;
-
     ref = 0;
+	err1 = 0;
+	err2 = 0;
 
 	printf("Please specify a reference: ");
 	scanf("%f", &ref);
@@ -31,8 +35,13 @@ int main(void)
 	while(end == 0)
 	{
 	   	err = ref - out;
-		PI(k_p, k_i, &in, &int_state, err, h);
+		// PI(k_p, k_i, &in, &int_state, err, h);
+		PID(k_p, k_i, k_d, &in, err, err1, err2, h);
 		process(in, &out);
+
+		// Update errors
+		err2 = err1;
+		err1 = err;
 
 		printf("Output value: %.1f \n", out);
 
