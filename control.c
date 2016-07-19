@@ -45,6 +45,11 @@ void PID(float k_p, float k_i, float k_d, float* u, float err0, float err1, floa
 *		to be added later
 */
 
+/*
+*	Model identificiation:
+*		to be added later
+*/
+
 
 /*
 *	Optimum control:
