@@ -16,9 +16,9 @@ int main(void)
 	int end = 0;
 	float h = 1; // sample period = 1 [s]
 	//float int_state = 0; //auxiliary state for the integrator
-	float k_p = 0.5;
-	float k_i = 0.2;
-	float k_d = 0.1;
+	float k_p = 1;
+	float k_i = 0.5;
+	float k_d = 0.2;
 	float err1 = 0; // error at n-1
 	float err2 = 0; // error at n-2
 
